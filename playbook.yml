@@ -3,21 +3,18 @@
   environment:
     AWS_ACCESS_KEY_ID: "{{ lookup('env','AWS_ACCESS_KEY_ID') }}"
     AWS_SECRET_ACCESS_KEY: "{{ lookup('env','AWS_SECRET_ACCESS_KEY') }}"
+    AWS_SESSION_TOKEN: "{{ lookup('env','AWS_SESSION_TOKEN') }}"
+    AWS_SECURITY_TOKEN: "{{ lookup('env','AWS_SESSION_TOKEN') }}"
+    EC2_SECURITY_TOKEN: "{{ lookup('env','AWS_SESSION_TOKEN') }}"
   pre_tasks:
-    - yum:
+    - name: install service
+      yum:
         name: initscripts
         state: installed
   roles:
-    - { role: ansible-role-aws-cli,
-          aws_cli_system_user: "root" ,
-          aws_cli_profile: "root" ,
-          aws_cli_access_key: "xxx",
-          aws_cli_secret_key: "xxx",
-          aws_cli_region: "eu-west-1",
-          aws_cli_format: "text"
-      }
+    - { role: ansible-role-aws-cli }
     - { role: ansible-aws-squid,
           aws_region: "ap-southeast-2",
-          install_s3_bucket_name: "varutatthakornpun",
-          squid_package: "squid-3.5.20-1.el6.x86_64.rpm",
+          install_s3_bucket_name: "sb-dev-rpm",
+          squid_package: "squid-3.5.20-1.el6.x86_64.rpm"
       }

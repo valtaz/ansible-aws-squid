@@ -4,9 +4,9 @@
   when: ansible_os_family == "RedHat"
 
 - name: "Generate certificate"
-  file: 
-    path: "/etc/squid/ssl" 
-    state: "directory" 
+  file:
+    path: "/etc/squid/ssl"
+    state: "directory"
 
 #Generate ssl key
 - shell: openssl genrsa -out /etc/squid/ssl/squid.key 2048

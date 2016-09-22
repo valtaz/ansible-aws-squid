@@ -2,8 +2,8 @@
 ansible:
   playbook: playbook.yml
   requirements_file: requirements.yml
-  # verbosity for ansible-playbook
-  verbose: vvvv
+  # # verbosity for ansible-playbook
+  # verbose: vvvv
 docker:
   containers:
   - name: ansible-aws-squid-01
