@@ -1,17 +1,20 @@
-Role Name
+ansible-aws-squid
 =========
 
-A brief description of the role goes here.
+ansible role which setup a transparent proxy server on aws base on https://blogs.aws.amazon.com/security/post/TxFRX7UFUIT2GD/How-to-Add-DNS-Filtering-to-Your-NAT-Instance-with-Squid
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+- awscli
+- squid rpm package in s3
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+aws_region: ap-southeast-2
+install_s3_bucket_name: varutatthakornpun
+squid_package: squid-3.5.20-1.el6.x86_64.rpm
 
 Dependencies
 ------------

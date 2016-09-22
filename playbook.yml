@@ -21,5 +21,3 @@
           install_s3_bucket_name: "varutatthakornpun",
           squid_package: "squid-3.5.20-1.el6.x86_64.rpm",
       }
-  tasks:
-    - shell: service squid status

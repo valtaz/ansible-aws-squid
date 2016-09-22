@@ -2,5 +2,5 @@
 *.swp
 *.retry
 *.test
-.molecule/roles/
+.molecule
 .cache
