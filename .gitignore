@@ -4,3 +4,4 @@
 *.test
 .molecule
 .cache
+test/__pycache__
