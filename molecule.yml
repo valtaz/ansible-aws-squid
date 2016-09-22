@@ -1,0 +1,23 @@
+---
+ansible:
+  playbook: playbook.yml
+  requirements_file: requirements.yml
+  # verbosity for ansible-playbook
+  verbose: vvvv
+docker:
+  containers:
+  - name: ansible-aws-squid-01
+    ansible_groups:
+      - group1
+    image: centos
+    image_version: centos6
+
+molecule:
+  test:
+    sequence:
+      - destroy
+      - syntax
+      - create
+      - converge
+      # - idempotence
+      - verify

@@ -1,0 +1,4 @@
+ansible-aws-squid-01 connection=docker
+
+[group1]
+ansible-aws-squid-01

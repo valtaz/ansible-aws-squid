@@ -1,0 +1,25 @@
+---
+- name: "Install the correct repository"
+  include: "RedHat.yml"
+  when: ansible_os_family == "RedHat"
+
+- name: "Generate certificate"
+  file: 
+    path: "/etc/squid/ssl" 
+    state: "directory" 
+
+#Generate ssl key
+- shell: openssl genrsa -out /etc/squid/ssl/squid.key 2048
+- shell: openssl req -new -key /etc/squid/ssl/squid.key -out /etc/squid/ssl/squid.csr -subj "/C=XX/ST=XX/L=squid/O=squid/CN=squid"
+- shell: openssl x509 -req -days 3650 -in /etc/squid/ssl/squid.csr -signkey /etc/squid/ssl/squid.key -out /etc/squid/ssl/squid.crt
+- shell: cat /etc/squid/ssl/squid.key /etc/squid/ssl/squid.crt > /etc/squid/ssl/squid.pem
+
+- name: "Copy squid config"
+  template:
+    src: squid.conf
+    dest: /etc/squid/squid.conf
+    owner: root
+    group: root
+    mode: 0644
+  sudo: yes
+  notify: "Restart squid"

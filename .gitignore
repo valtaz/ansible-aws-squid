@@ -1,0 +1,6 @@
+.vagrant
+*.swp
+*.retry
+*.test
+.molecule/roles/
+.cache

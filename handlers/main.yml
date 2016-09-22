@@ -1,0 +1,8 @@
+---
+# handlers file for ansible-aws-squid
+- name: "Restart Squid"
+  action: service
+          name=squid
+          state=restarted
+          enabled=yes
+  sudo: yes

@@ -1,0 +1,33 @@
+---
+- name: Install dependencies
+  yum:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - libtool-ltdl
+
+- name: create temp directory
+  shell: "mktemp -d /tmp/ansible.XXXX"
+  register: mktemp_output
+
+- name: "Check squid version if squid already install"
+  shell: "rpm -q squid"
+  register: squid_install_result
+  ignore_errors: yes
+
+- name: "Fetch squid installation package | RedHat"
+  shell: "aws --region {{ aws_region }} s3 cp s3://{{ install_s3_bucket_name }}/{{ squid_package }} {{ mktemp_output.stdout }}/{{ squid_package }}"
+
+- name: "Check the squid package version"
+  shell: "rpm -qp {{ mktemp_output.stdout }}/{{ squid_package }}"
+  register: squid_package_result
+
+- name: "Current squid Version"
+  debug: var=squid_install_result.stdout
+- name: "squid Package Version"
+  debug: var=squid_package_result.stdout
+
+- name: "Install squid package | RedHat"
+  shell: "rpm -Uvh {{ mktemp_output.stdout }}/{{ squid_package }}"
+  when: "'package squid is not installed' in squid_install_result.stdout or squid_install_result.stdout not in squid_package_result.stdout"
+  notify: "Restart squid"
