@@ -5,6 +5,7 @@
     state: installed
   with_items:
     - libtool-ltdl
+    - openssl
 
 - name: create temp directory
   shell: "mktemp -d /tmp/ansible.XXXX"
