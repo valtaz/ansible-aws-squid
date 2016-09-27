@@ -19,7 +19,8 @@ squid_package: squid-3.5.20-1.el6.x86_64.rpm
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+- squid rpm package in S3
+- IAM role which allow to access S3
 
 Example Playbook
 ----------------
@@ -28,14 +29,8 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
-
-License
--------
-
-BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+         - { role: ansible-aws-squid,  
+                  aws_region: "ap-southeast-2",
+                  install_s3_bucket_name: "sb-dev-rpm",
+                  squid_package: "squid-3.5.20-1.el7.centos.x86_64.rpm"
+           }
