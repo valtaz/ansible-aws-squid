@@ -8,19 +8,20 @@ Requirements
 
 - awscli
 - squid rpm package in s3
+- IAM role which allow to access S3
 
 Role Variables
 --------------
 
 aws_region: ap-southeast-2
-install_s3_bucket_name: varutatthakornpun
+install_s3_bucket_name: sb-dev-rpm
 squid_package: squid-3.5.20-1.el6.x86_64.rpm
 
 Dependencies
 ------------
 
-- squid rpm package in S3
-- IAM role which allow to access S3
+- None
+
 
 Example Playbook
 ----------------
