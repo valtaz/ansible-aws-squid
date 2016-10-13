@@ -1,7 +1,7 @@
 ---
 # defaults file for ansible-aws-squid
 aws_region: ap-southeast-2
-install_s3_bucket_name: varutatthakornpun
+install_s3_bucket_name: sb-dev-rpm
 squid_package: squid-3.5.20-1.el7.centos.x86_64.rpm
 # squid-3.5.20-1.el6.x86_64.rpm
 # squid-3.5.20-1.el7.centos.x86_64.rpm
