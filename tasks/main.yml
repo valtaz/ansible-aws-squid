@@ -21,6 +21,15 @@
 - shell: service iptables save
 - shell: service iptables start
 
+- name: "squid monitor script"
+  template:
+    src: squid_monitor.sh
+    dest: /usr/local/bin/squid_monitor.sh
+    owner: root
+    group: root
+    mode: 0755
+  sudo: yes
+
 - name: "Copy squid config"
   template:
     src: squid.conf
